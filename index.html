@@ -1,1 +1,547 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Battery & Network Monitor | Cybro Technology</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --card-border: #30363d;
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
+            --accent-emerald: #10b981;
+            --accent-cyan: #06b6d4;
+        }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px 16px 50px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Top Bar with Compact Single Language Selector */
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 10px 16px;
+            border-radius: 14px;
+            margin-bottom: 24px;
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+        }
+
+        .app-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--accent-emerald);
+        }
+
+        /* The Single Compact Language Button / Dropdown */
+        .lang-dropdown-wrapper {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .lang-select-btn {
+            background: #21262d;
+            color: #ffffff;
+            border: 1px solid #484f58;
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 13.5px;
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .lang-select-btn:hover, .lang-select-btn:focus {
+            border-color: var(--accent-emerald);
+            background: #2a313c;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .last-updated {
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 22px;
+            margin-bottom: 18px;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .card-header .icon {
+            font-size: 22px;
+        }
+
+        .card-header h2 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        p {
+            color: #c9d1d9;
+            font-size: 14.5px;
+            margin-bottom: 12px;
+        }
+
+        p:last-child {
+            margin-bottom: 0;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            position: relative;
+            padding-left: 22px;
+            margin-bottom: 10px;
+            color: #c9d1d9;
+            font-size: 14px;
+        }
+
+        li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-emerald);
+            font-weight: bold;
+        }
+
+        .perm-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .perm-item {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 14px;
+        }
+
+        .perm-title {
+            font-size: 14.5px;
+            font-weight: 700;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+
+        .perm-code {
+            font-family: monospace;
+            font-size: 11px;
+            color: var(--accent-cyan);
+            background: rgba(6, 182, 212, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .perm-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .contact-box {
+            background: rgba(6, 182, 212, 0.05);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 12px;
+        }
+
+        .contact-box a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+            animation: fadeIn 0.25s ease-in-out;
+        }
+
+        [dir="rtl"] {
+            text-align: right;
+        }
+        [dir="rtl"] li {
+            padding-left: 0;
+            padding-right: 22px;
+        }
+        [dir="rtl"] li::before {
+            left: auto;
+            right: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 35px;
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Compact Top Sticky Bar with Single Dropdown Button -->
+    <div class="top-bar">
+        <div class="app-brand">
+            <span>⚡ Battery & Network Monitor</span>
+        </div>
+        
+        <div class="lang-dropdown-wrapper">
+            <select class="lang-select-btn" id="langSelect" onchange="onLanguageChange(this.value)">
+                <option value="en">🌐 English (US)</option>
+                <option value="bn">🌐 বাংলা (Bengali)</option>
+                <option value="zh">🌐 简体中文 (Chinese)</option>
+                <option value="ko">🌐 한국어 (Korean)</option>
+                <option value="ja">🌐 日本語 (Japanese)</option>
+                <option value="ru">🌐 Русский (Russian)</option>
+                <option value="ar">🌐 العربية (Arabic)</option>
+            </select>
+        </div>
+    </div>
+
+    <header>
+        <h1>Privacy Policy & Transparency</h1>
+        <p class="last-updated">Published by <strong>Cybro Technology</strong> • Updated: September 2026</p>
+    </header>
+
+    <!-- 1. ENGLISH CONTENT -->
+    <div id="lang-en" class="lang-content active" dir="ltr">
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">🛡️</span>
+                <h2>1. Introduction & 100% On-Device Privacy</h2>
+            </div>
+            <p>Welcome to <strong>Battery & Network Monitor</strong>, developed and published by <strong>Cybro Technology</strong> (Lead Developer: <strong>Md Ismail</strong>).</p>
+            <p>This application is architected from the ground up as a <strong>100% local, offline utility</strong>. We do not host remote accounts, do not collect personal identifiers, do not log your visited URLs or browsing history, and do not transmit your device metrics to external servers.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">🔑</span>
+                <h2>2. Device Permissions & Purpose of Use</h2>
+            </div>
+            <div class="perm-grid">
+                <div class="perm-item">
+                    <div class="perm-title">
+                        <span>Status Bar Notifications</span>
+                        <span class="perm-code">POST_NOTIFICATIONS</span>
+                    </div>
+                    <div class="perm-desc">Displays real-time download and upload speed meter in the notification shade and sends instant alerts when battery is full or low.</div>
+                </div>
+
+                <div class="perm-item">
+                    <div class="perm-title">
+                        <span>Display Over Other Apps</span>
+                        <span class="perm-code">SYSTEM_ALERT_WINDOW</span>
+                    </div>
+                    <div class="perm-desc">Renders draggable floating speed bubble and high-fidelity charging animations when the device is plugged in.</div>
+                </div>
+
+                <div class="perm-item">
+                    <div class="perm-title">
+                        <span>App Data Usage Access</span>
+                        <span class="perm-code">PACKAGE_USAGE_STATS</span>
+                    </div>
+                    <div class="perm-desc">Calculates local cellular and Wi-Fi data consumption per installed app using native Android NetworkStatsManager.</div>
+                </div>
+
+                <div class="perm-item">
+                    <div class="perm-title">
+                        <span>Wi-Fi Network Information</span>
+                        <span class="perm-code">ACCESS_FINE_LOCATION</span>
+                    </div>
+                    <div class="perm-desc">Required by Android OS security policy to read connected Wi-Fi router SSID name and channel frequency. No GPS location tracking is conducted.</div>
+                </div>
+
+                <div class="perm-item">
+                    <div class="perm-title">
+                        <span>Auto-Start on Reboot</span>
+                        <span class="perm-code">RECEIVE_BOOT_COMPLETED</span>
+                    </div>
+                    <div class="perm-desc">Automatically resumes background network speed monitoring and battery alerts whenever your device restarts.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">📢</span>
+                <h2>3. Advertising (Google AdMob)</h2>
+            </div>
+            <p>Our app integrates Google Mobile Ads (AdMob) to support free app maintenance in accordance with Google Play Developer Policies.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">📬</span>
+                <h2>4. Contact Cybro Technology</h2>
+            </div>
+            <div class="contact-box">
+                <p>🏢 <strong>Company / Publisher:</strong> Cybro Technology</p>
+                <p>👨‍💻 <strong>Lead Developer:</strong> Md Ismail</p>
+                <p>📧 <strong>Official Support Email:</strong> <a href="mailto:cybrotechnology1@gmail.com">cybrotechnology1@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. BENGALI CONTENT (বাংলা) -->
+    <div id="lang-bn" class="lang-content" dir="ltr">
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">🛡️</span>
+                <h2>১. ভূমিকা এবং ১০০% অন-ডিভাইস প্রাইভেসি গ্যারান্টি</h2>
+            </div>
+            <p><strong>Cybro Technology</strong> (লিড ডেভেলপার: <strong>Md Ismail</strong>) কর্তৃক প্রকাশিত <strong>Battery & Network Monitor</strong> অ্যাপে আপনাকে স্বাগতম।</p>
+            <p>আমাদের এই অ্যাপটি সম্পূর্ণ <strong>অফলাইন ও লোকাল আর্কিটেকচারে</strong> তৈরি। আমরা কোনো ইউজার অ্যাকাউন্ট তৈরি করি না, আপনার ব্রাউজিং হিস্টোরি দেখি না এবং আপনার কোনো ব্যক্তিগত ডাটা কোনো রিমোট সার্ভারে আপলোড করি না।</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">🔑</span>
+                <h2>২. পারমিশনের তালিকা ও ব্যবহারের কারণ</h2>
+            </div>
+            <div class="perm-grid">
+                <div class="perm-item">
+                    <div class="perm-title"><span>স্ট্যাটাস বার নোটিফিকেশন</span><span class="perm-code">POST_NOTIFICATIONS</span></div>
+                    <div class="perm-desc">স্ট্যাটাস বারে লাইভ ইন্টারনেট স্পিড মিটার এবং ফুল/লো ব্যাটারি অ্যালার্ট দেখানোর জন্য ব্যবহৃত হয়।</div>
+                </div>
+                <div class="perm-item">
+                    <div class="perm-title"><span>অন্যান্য অ্যাপের উপর প্রদর্শন</span><span class="perm-code">SYSTEM_ALERT_WINDOW</span></div>
+                    <div class="perm-desc">স্ক্রিনের উপর ভাসমান ফ্লোটিং স্পিড বাবল এবং চার্জার প্লাগ-ইন করলে চার্জিং অ্যানিমেশন দেখানোর জন্য।</div>
+                </div>
+                <div class="perm-item">
+                    <div class="perm-title"><span>অ্যাপ ডাটা ইউসেজ অ্যাক্সেস</span><span class="perm-code">PACKAGE_USAGE_STATS</span></div>
+                    <div class="perm-desc">কোন অ্যাপটি কতটুকু ওয়াই-ফাই বা মোবাইল ডাটা ব্যবহার করেছে তা সম্পূর্ণ লোকালি আপনার ডিভাইসে পরিমাপ করে।</div>
+                </div>
+                <div class="perm-item">
+                    <div class="perm-title"><span>ওয়াই-ফাই নেটওয়ার্ক তথ্য</span><span class="perm-code">ACCESS_FINE_LOCATION</span></div>
+                    <div class="perm-desc">অ্যান্ড্রয়েড ওএসের নিয়ম অনুযায়ী কানেক্টেড ওয়াই-ফাই এর রাউটার নাম (SSID) ও ফ্রিকোয়েন্সি দেখার জন্য আবশ্যক।</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">📬</span>
+                <h2>৩. যোগাযোগ ও সাপোর্ট (Cybro Technology)</h2>
+            </div>
+            <div class="contact-box">
+                <p>🏢 <strong>কোম্পানি / পাবলিশার:</strong> Cybro Technology</p>
+                <p>👨‍💻 <strong>প্রধান ডেভেলপার:</strong> Md Ismail</p>
+                <p>📧 <strong>অফিশিয়াল সাপোর্ট ইমেইল:</strong> <a href="mailto:cybrotechnology1@gmail.com">cybrotechnology1@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. CHINESE CONTENT (简体中文) -->
+    <div id="lang-zh" class="lang-content" dir="ltr">
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">🛡️</span>
+                <h2>1. 简介与 100% 本地隐私保护</h2>
+            </div>
+            <p>欢迎使用由 <strong>Cybro Technology</strong>（首席开发者：<strong>Md Ismail</strong>）发行的 <strong>Battery & Network Monitor</strong>。</p>
+            <p>本应用程序基于 <strong>100% 本地离线架构</strong> 构建。我们不创建远程账户，不收集任何个人身份信息，也不会将您的硬件数据上传到任何远程服务器。</p>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">📬</span>
+                <h2>2. 联系 Cybro Technology</h2>
+            </div>
+            <div class="contact-box">
+                <p>🏢 <strong>公司 / 发行团队:</strong> Cybro Technology</p>
+                <p>👨‍💻 <strong>首席开发者:</strong> Md Ismail</p>
+                <p>📧 <strong>官方支持邮箱:</strong> <a href="mailto:cybrotechnology1@gmail.com">cybrotechnology1@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. KOREAN CONTENT (한국어) -->
+    <div id="lang-ko" class="lang-content" dir="ltr">
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">🛡️</span>
+                <h2>1. 개요 및 100% 기기 내 개인정보 보호</h2>
+            </div>
+            <p><strong>Cybro Technology</strong>(수석 개발자: <strong>Md Ismail</strong>)에서 제공하는 <strong>Battery & Network Monitor</strong>입니다.</p>
+            <p>본 앱은 <strong>100% 오프라인 로컬 처리</strong> 방식으로 구축되었으며 개인 데이터를 외부 서버로 전송하지 않습니다.</p>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">📬</span>
+                <h2>2. 지원 및 문의 (Cybro Technology)</h2>
+            </div>
+            <div class="contact-box">
+                <p>🏢 <strong>회사 / 퍼블리셔:</strong> Cybro Technology</p>
+                <p>👨‍💻 <strong>수석 개발자:</strong> Md Ismail</p>
+                <p>📧 <strong>공식 이메일:</strong> <a href="mailto:cybrotechnology1@gmail.com">cybrotechnology1@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. JAPANESE CONTENT (日本語) -->
+    <div id="lang-ja" class="lang-content" dir="ltr">
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">🛡️</span>
+                <h2>1. はじめに・100%端末内プライバシー保護</h2>
+            </div>
+            <p><strong>Cybro Technology</strong>（開発責任者：<strong>Md Ismail</strong>）が提供する <strong>Battery & Network Monitor</strong> のプライバシーポリシーです。</p>
+            <p>当アプリは <strong>100% 完全ローカル仕様</strong> で設計されており、個人情報を外部サーバーへ送信することは一切ありません。</p>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">📬</span>
+                <h2>2. お問い合わせ先 (Cybro Technology)</h2>
+            </div>
+            <div class="contact-box">
+                <p>🏢 <strong>開発・運営:</strong> Cybro Technology</p>
+                <p>👨‍💻 <strong>開発責任者:</strong> Md Ismail</p>
+                <p>📧 <strong>サポートメール:</strong> <a href="mailto:cybrotechnology1@gmail.com">cybrotechnology1@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. RUSSIAN CONTENT (Русский) -->
+    <div id="lang-ru" class="lang-content" dir="ltr">
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">🛡️</span>
+                <h2>1. Введение и полная конфиденциальность (100% On-Device)</h2>
+            </div>
+            <p>Добро пожаловать в <strong>Battery & Network Monitor</strong> от <strong>Cybro Technology</strong> (Ведущий разработчик: <strong>Md Ismail</strong>).</p>
+            <p>Приложение работает <strong>полностью локально</strong>. Мы не собираем личную информацию и не передаем метрики вашего устройства на внешние серверы.</p>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">📬</span>
+                <h2>2. Контакты (Cybro Technology)</h2>
+            </div>
+            <div class="contact-box">
+                <p>🏢 <strong>Компания:</strong> Cybro Technology</p>
+                <p>👨‍💻 <strong>Ведущий разработчик:</strong> Md Ismail</p>
+                <p>📧 <strong>Служба поддержки:</strong> <a href="mailto:cybrotechnology1@gmail.com">cybrotechnology1@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. ARABIC CONTENT (العربية) -->
+    <div id="lang-ar" class="lang-content" dir="rtl">
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">🛡️</span>
+                <h2>١. مقدمة وضمان الخصوصية بنسبة 100%</h2>
+            </div>
+            <p>مرحبًا بك في <strong>Battery & Network Monitor</strong> من <strong>Cybro Technology</strong> (المطور الرئيسي: <strong>Md Ismail</strong>).</p>
+            <p>تم تصميم هذا التطبيق ليعمل <strong>محليًا بنسبة 100%</strong> دون إرسال أي بيانات شخصية إلى أي خوادم خارجية.</p>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <span class="icon">📬</span>
+                <h2>٢. معلومات الاتصال (Cybro Technology)</h2>
+            </div>
+            <div class="contact-box">
+                <p>🏢 <strong>الشركة:</strong> Cybro Technology</p>
+                <p>👨‍💻 <strong>المطور الرئيسي:</strong> Md Ismail</p>
+                <p>📧 <strong>البريد الإلكتروني للدعم:</strong> <a href="mailto:cybrotechnology1@gmail.com">cybrotechnology1@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Cybro Technology. All rights reserved.</p>
+    </footer>
+</div>
+
+<script>
+    function onLanguageChange(langCode) {
+        const contents = document.querySelectorAll('.lang-content');
+        contents.forEach(content => content.classList.remove('active'));
+
+        const targetContent = document.getElementById('lang-' + langCode);
+        if (targetContent) {
+            targetContent.classList.add('active');
+        }
+
+        if (langCode === 'ar') {
+            document.documentElement.setAttribute('dir', 'rtl');
+        } else {
+            document.documentElement.setAttribute('dir', 'ltr');
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
